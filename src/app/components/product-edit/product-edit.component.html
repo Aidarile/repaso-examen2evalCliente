@@ -1,3 +1,148 @@
-<div class="mt-5">
-    <div class="mt-5">
+<div class="container mt-10">
+    @defer (when loading) {
+        <div class="row mt-5">
+            <div class="col-md-4 offset-md-2">
+                <h3>{{edit? 'EDIT PRODUCT' : 'NEW PRODUCT'}}</h3>
+                <form [formGroup]="formProduct">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                        id="title" formControlName="title"
+                        placeholder="title">
+                        <label for="title">Title</label>
+                        @if (title.invalid && (title.dirty || title.touched)) {
+                            <div class="alert alert-danger">
+                                @if (title.errors['required']) {
+                                    <p>Title is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control"
+                        id="price" formControlName="price"
+                        placeholder="price">
+                        <label for="price">Price</label>
+                        @if (price.invalid && (price.dirty || price.touched)) {
+                            <div class="alert alert-danger">
+                                @if (price.errors['required']) {
+                                    <p>Price is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                        id="description" formControlName="description"
+                        placeholder="description">
+                        <label for="description">Description</label>
+                        @if (description.invalid && (description.dirty || description.touched)) {
+                            <div class="alert alert-danger">
+                                @if (description.errors['required']) {
+                                    <p>Description is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                        id="category" formControlName="category"
+                        placeholder="category">
+                        <label for="category">Category</label>
+                        @if (category.invalid && (category.dirty || category.touched)) {
+                            <div class="alert alert-danger">
+                                @if (category.errors['required']) {
+                                    <p>Category is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                        id="image" formControlName="image"
+                        placeholder="image">
+                        <label for="image">Image</label>
+                        @if (image.invalid && (image.dirty || image.touched)) {
+                            <div class="alert alert-danger">
+                                @if (image.errors['required']) {
+                                    <p>Image is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <!-- POR ACABAR -->
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                        id="category" formControlName="category"
+                        placeholder="category">
+                        <label for="category">Category</label>
+                        @if (category.invalid && (category.dirty || category.touched)) {
+                            <div class="alert alert-danger">
+                                @if (category.errors['required']) {
+                                    <p>Category is required</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    
+
+
+                </form>
+                
+                <div class="card shadow-sm">
+                    <img [src]="image.value? image.value : '/images/not-found.png'" alt="{{title.value}}" class="card-img-top">
+                    
+                    <div class="card-body">
+                      <p class="badge rounded-pill bg-primary">{{category.value}}</p>
+                      <p class="card-title text-secondary">{{title.value}}</p>
+                      <p class="card-text">{{description.value}}</p>
+                      <p class="card-text"></p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <fa-icon [icon]="faCartShopping"></fa-icon>
+                          </button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                          </button>
+      
+      
+                          <button type="button" data-bs-toggle="modal"
+                          [attr.data-bs-target]="'#miModal' + id"
+                          class="btn btn-sm btn-outline-danger">
+                            <fa-icon [icon]="faTrashCan"></fa-icon>
+                          </button>
+      
+                        </div>
+                        <small class="text-body-secondary">{{price.value | currency: 'EUR' }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+            <div class="col-md-4 col-lg-3">
+            </div> 
+        </div> 
+
+        @if (toastShow) {
+            <ngb-toast class="toast-container position-fixed top-0 end-0 p-3 {{toast.color}}" style="z-index: 1200">
+                {{toast.body}}
+            </ngb-toast>
+        } 
+    }
+    
+    @placeholder () {
+        <div class="mt-5 d-flex justify-content-center">
+            <div class="spinner-grow text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+</div>
+
     

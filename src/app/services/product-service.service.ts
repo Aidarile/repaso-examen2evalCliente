@@ -22,7 +22,7 @@ export class ProductServiceService {
   }
 
   getProduct(id: number): Observable<Producto> {
-    return this.http.get<Producto> (
+    return this.http.get<Producto>(
       environment.urlBase+id
     )
   }
